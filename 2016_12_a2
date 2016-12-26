@@ -1,0 +1,143 @@
+package com.questionaireSurvey;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JToolBar;
+
+
+public class QuestionnaireDome extends JFrame{
+	GridLayout fridlayout=new GridLayout(0,1);
+	JScrollPane scrollpane=new JScrollPane();
+	
+	
+	public QuestionnaireDome(){
+		this.setDefaultCloseOperation(3);
+		this.setTitle("调查问卷创建软件");
+		this.setBounds(1, 1, 400, 400);
+		scrollpane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+		scrollpane.setWheelScrollingEnabled(true);
+		this.getContentPane().add(scrollpane);
+		addMenu();
+		addToolbox();
+	}
+	
+	
+	
+	
+	private void addToolbox() {
+		JToolBar toolbox=new JToolBar();
+		JButton radioBtn=new JButton("单选框");
+		radioBtn.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseClicked(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				JFrame jf=new JFrame();
+				jf.setBounds(0, 0, 200, 200);
+				//jf.setDefaultCloseOperation(3);
+				jf.setVisible(true);
+				JTextArea area=new JTextArea();
+				area.addKeyListener(new KeyListener(){
+
+					@Override
+					public void keyPressed(KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						int code = arg0.getKeyCode();
+		                 if(!(code>=KeyEvent.VK_0&&code<=KeyEvent.VK_9))
+		                 {
+		                     System.out.println(code+"..."+"是非法的");
+		                     arg0.consume();
+		                 }
+					}
+
+					@Override
+					public void keyReleased(KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}
+
+					@Override
+					public void keyTyped(KeyEvent arg0) {
+						// TODO Auto-generated method stub
+						
+					}});
+				jf.add(area);
+				
+				
+			}
+
+			@Override
+			public void mouseEntered(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseExited(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mousePressed(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void mouseReleased(MouseEvent arg0) {
+				// TODO Auto-generated method stub
+				
+			}});
+				
+		JButton multipleBtn=new JButton("多选框");
+		JButton questionBtn=new JButton("提问框");
+		toolbox.add(radioBtn);
+		toolbox.add(multipleBtn);
+		toolbox.add(questionBtn);
+		this.getContentPane().add(toolbox,BorderLayout.NORTH);
+	}
+
+
+
+
+	private void addMenu() {
+		JMenuBar menu=new JMenuBar();
+		JMenu fileMenu=new JMenu("文件");
+		this.setJMenuBar(menu);
+		menu.add(fileMenu);
+		JMenuItem newfile=new JMenuItem("新建");
+		JMenuItem savefile=new JMenuItem("保存");
+		JMenuItem buildfile=new JMenuItem("生成");
+		JMenuItem openfile=new JMenuItem("打开");
+		fileMenu.add(newfile);
+		fileMenu.add(openfile);
+		fileMenu.add(savefile);
+		fileMenu.add(buildfile);
+		
+	}
+
+
+
+
+	public static void main(String[] args){
+		QuestionnaireDome ques=new QuestionnaireDome();
+		ques.setVisible(true);
+		
+		
+		
+	}
+}
+
